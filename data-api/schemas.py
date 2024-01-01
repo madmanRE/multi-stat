@@ -33,9 +33,12 @@ class ReferralsSEO(ChanelSEOTraffic):
 
 
 class SEO(BaseModel):
+    title: str
+    visits: int
     all_expense: int
-    average_transactions: int
+    sum_transactions: int
     avg_check: int
+    income: int
     yandex: YandexSEO
     google: GoogleSEO
     direct: DirectSEO
