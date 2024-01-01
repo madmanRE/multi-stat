@@ -9,9 +9,12 @@
     <meta name="keywords"
           content="Mobile App Development, ​Stimulate your cognitive abilities while having fun, What We Do, Testimonials, Company Services, ​Love the way you work together?, Our Portfolio, About Us, ​Our way, Get in Touch, ​Level up your brand">
     <meta name="description" content="">
-    <title>Главная</title>
+    <title>{% block title %}MultiStat сервис мультиканальной аналитики{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
     <link rel="stylesheet" href="{% static 'css/Главная.css' %}" media="screen">
+    {% if 'socials' in request.path %}
+    <link rel="stylesheet" href="{% static 'css/Страница-1.css' %}" media="screen">
+    {% endif %}
     <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
     <meta name="generator" content="Nicepage 6.0.3, nicepage.com">
@@ -37,7 +40,7 @@
       class="u-body u-xl-mode" data-lang="ru">
 <header class="u-clearfix u-grey-80 u-header u-sticky u-sticky-19c7 u-header" id="sec-d402">
     <div class="u-clearfix u-sheet u-sheet-1">
-        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="1024"
+        <a href="{% url 'main:index' %}" class="u-image u-logo u-image-1" data-image-width="1024"
            data-image-height="1024">
             <img src="{% static 'img/cupy_icon.png' %}" class="u-logo-image u-logo-image-1">
         </a>
@@ -62,8 +65,9 @@
                 <ul class="u-nav u-spacing-30 u-unstyled u-nav-1">
                     <li class="u-nav-item"><a
                             class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-5-light-1 u-text-white"
-                            href="Главная.html" style="padding: 10px 0px;">Главная</a>
+                            href="{% url 'main:index' %}" style="padding: 10px 0px;">Главная</a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li class="u-nav-item"><a
                             class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-5-light-1 u-text-white"
                             style="padding: 10px 0px;">Аналитика</a>
@@ -76,13 +80,32 @@
                             class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-5-light-1 u-text-white"
                             style="padding: 10px 0px;">Профиль</a>
                     </li>
+                    <li class="u-nav-item">
+                        <form method="post" action="{% url 'socials:logout' %}">
+                            {% csrf_token %}
+                            <button style="padding: 10px 0px; cursor:pointer"
+                                    class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-5-light-1 u-text-white"
+                                    type="submit">Выход
+                            </button>
+                        </form>
+                    </li>
+                    {% else %}
                     <li class="u-nav-item"><a
                             class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-5-light-1 u-text-white"
-                            href="#" style="padding: 10px 0px;">Контакты</a>
+                            href="{% url 'socials:login' %}" style="padding: 10px 0px;">Вход</a>
                     </li>
-                     <li class="u-nav-item"><a
+                    <li class="u-nav-item"><a
                             class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-5-light-1 u-text-white"
-                            href="#" style="padding: 10px 0px;">О нас</a>
+                            style="padding: 10px 0px;">Регистрация</a>
+                    </li>
+                    {% endif %}
+                    <li class="u-nav-item"><a
+                            class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-5-light-1 u-text-white"
+                            href="{% url 'main:contacts' %}" style="padding: 10px 0px;">Контакты</a>
+                    </li>
+                    <li class="u-nav-item"><a
+                            class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-5-light-1 u-text-white"
+                            href="{% url 'main:about' %}" style="padding: 10px 0px;">О нас</a>
                     </li>
                 </ul>
             </div>
@@ -91,17 +114,34 @@
                     <div class="u-inner-container-layout u-sidenav-overflow">
                         <div class="u-menu-close"></div>
                         <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Главная.html">Главная</a>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'main:index' %}">Главная</a>
                             </li>
+                            {% if user.is_authenticated %}
                             <li class="u-nav-item"><a class="u-button-style u-nav-link">Аналитика</a>
                             </li>
                             <li class="u-nav-item"><a class="u-button-style u-nav-link">Дашборд</a>
                             </li>
                             <li class="u-nav-item"><a class="u-button-style u-nav-link">Профиль</a>
                             </li>
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="#">Контакты</a>
+                            <li class="u-nav-item">
+                                <form method="post" action="{% url 'socials:logout' %}">
+                                    {% csrf_token %}
+                                    <button style="padding: 10px 0px; cursor:pointer"
+                                            class="u-button-style u-nav-link"
+                                            type="submit">Выход
+                                    </button>
+                                </form>
                             </li>
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="#">О нас</a>
+                            {% else %}
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                                      href="{% url 'socials:login' %}">Вход</a>
+                            </li>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link">Регистрация</a>
+                            </li>
+                            {% endif %}
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'main:contacts' %}">Контакты</a>
+                            </li>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'main:about' %}">О нас</a>
                             </li>
                         </ul>
                     </div>
@@ -118,7 +158,8 @@
 
 <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-6d3f">
     <div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-small-text u-text u-text-variant u-text-1"><q>Если вашего бизнеса нет в интернете, то вас нет в бизнесе</q> — Стив Джобс</p>
+        <p class="u-small-text u-text u-text-variant u-text-1"><q>Если вашего бизнеса нет в интернете, то вас нет в
+            бизнесе</q> — Стив Джобс</p>
     </div>
 </footer>
 

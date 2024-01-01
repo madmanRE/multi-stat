@@ -1,0 +1,34 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+
+<section class="u-clearfix u-palette-1-light-3 u-section-1" id="carousel_9c5c">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <h2 class="u-align-center u-text u-text-default u-text-1"> Выполните вход</h2>
+        <div class="u-align-left-lg u-align-left-xl u-palette-2-base u-preserve-proportions u-shape u-shape-circle u-shape-1"></div>
+        <div class="u-expanded-width-sm u-expanded-width-xs u-form u-form-1">
+            <form method="post" action="{% url 'socials:login' %}">
+                {% csrf_token %}
+                <div class="u-form-group u-form-name">
+                    <label for="name-e893" class="u-label">Имя</label>
+                    <input type="text" placeholder="Enter your Name" id="name-e893" name="username"
+                           class="u-border-none u-input u-input-rectangle u-radius u-input-1" required="">
+                </div>
+                <div class="u-form-email u-form-group">
+                    <label for="password-e893" class="u-label">Пароль</label>
+                    <input type="password" placeholder="Enter your password" id="password-e893" name="password"
+                           class="u-border-none u-input u-input-rectangle u-radius u-input-2" required="">
+                </div>
+                <input type="submit" value="Вход" style="margin-top:10px; background-color: DarkOrchid; color: white; font-size: bold; border-radius: 5px; width: 150px;">
+                <input type="hidden" name="next" value="{{ next }}">
+            </form>
+        </div>
+        <div class="u-palette-1-base u-preserve-proportions u-shape u-shape-circle u-shape-2"></div>
+    </div>
+</section>
+
+
+{% endblock %}
