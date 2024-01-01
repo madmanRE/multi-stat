@@ -67,7 +67,7 @@
                             class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-5-light-1 u-text-white"
                             href="{% url 'main:index' %}" style="padding: 10px 0px;">Главная</a>
                     </li>
-                    {% if user.is_authenticated %}
+                    {% if request.user.is_authenticated and request.user.username != 'admin' and request.user.profile.id != '' %}
                     <li class="u-nav-item"><a
                             class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-5-light-1 u-text-white"
                             style="padding: 10px 0px;">Аналитика</a>
@@ -78,7 +78,7 @@
                     </li>
                     <li class="u-nav-item"><a
                             class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-5-light-1 u-text-white"
-                            style="padding: 10px 0px;">Профиль</a>
+                            href="{% url 'socials:profile_view' pk=request.user.profile.id%}" style="padding: 10px 0px;">Профиль</a>
                     </li>
                     <li class="u-nav-item">
                         <form method="post" action="{% url 'socials:logout' %}">
@@ -96,7 +96,7 @@
                     </li>
                     <li class="u-nav-item"><a
                             class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-5-light-1 u-text-white"
-                            style="padding: 10px 0px;">Регистрация</a>
+                            href="{% url 'socials:register' %}" style="padding: 10px 0px;">Регистрация</a>
                     </li>
                     {% endif %}
                     <li class="u-nav-item"><a
@@ -116,12 +116,12 @@
                         <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
                             <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'main:index' %}">Главная</a>
                             </li>
-                            {% if user.is_authenticated %}
+                            {% if request.user.is_authenticated and request.user.username != 'admin' and request.user.profile.id != '' %}
                             <li class="u-nav-item"><a class="u-button-style u-nav-link">Аналитика</a>
                             </li>
                             <li class="u-nav-item"><a class="u-button-style u-nav-link">Дашборд</a>
                             </li>
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link">Профиль</a>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'socials:profile_view' pk=request.user.profile.id%}">Профиль</a>
                             </li>
                             <li class="u-nav-item">
                                 <form method="post" action="{% url 'socials:logout' %}">
@@ -136,7 +136,7 @@
                             <li class="u-nav-item"><a class="u-button-style u-nav-link"
                                                       href="{% url 'socials:login' %}">Вход</a>
                             </li>
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link">Регистрация</a>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'socials:register' %}">Регистрация</a>
                             </li>
                             {% endif %}
                             <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'main:contacts' %}">Контакты</a>

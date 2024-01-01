@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Профиль пользователя {{profile.username}}
+{% endblock %}
+{% block content %}
+<div style="margin: 100px">
+    <div>
+        <div class="col-md-6">
+            <div class="text-center">
+                <h1>{{ profile.username }}</h1>
+                <img src="{{ profile.avatar.url }}" width="250px" style="border-radius: 5px">
+            </div>
+            <table style="border-collapse: collapse; width: 50%; margin: 15px">
+                <tr>
+                    <th style="border: 1px solid #dddddd; text-align: left; padding: 8px; background-color: #f2f2f2;"
+                        colspan="2">Информация о пользователе
+                    </th>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">
+                        {{ profile.username }}
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">
+                        <a href="mailto:{{profile.email}}:">{{ profile.email }}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">
+                        <a href="tel:{{ profile.phone }}">{{ profile.phone }}</a>
+                    </td>
+                </tr>
+            </table>
+            <div>
+                <a style="margin-top:10px; background-color: DarkOrchid; color: white; font-size: bold; border-radius: 5px; width: 250px"
+                   href="{% url 'socials:profile_update' pk=profile.id %}">Изменить!</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
