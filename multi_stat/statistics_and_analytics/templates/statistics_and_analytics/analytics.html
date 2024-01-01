@@ -6,6 +6,9 @@
 {% endblock %}
 {% block style %}
 <style>
+    h2 {
+        text-align: center;
+    }
     #main {
         min-height: 400px;
     }
@@ -25,7 +28,7 @@
         padding: 7px;
         background: BlueViolet;
         color: white;
-        border: none;
+        border: 1px solid #dddddd;
         text-align: left;
         font-size: 15px;
         border-top: 3px solid #fff;
@@ -33,24 +36,27 @@
     }
     table td {
         padding: 7px;
-        border: none;
+        border: 1px solid #dddddd;
         border-top: 3px solid #fff;
         border-bottom: 3px solid #fff;
         font-size: 15px;
     }
-    table tbody tr:nth-child(even){
-        background: #f8f8f8!important;
+    tr:hover {
+        background-color:Violet;
     }
 </style>
 {% endblock %}
 
 {% block content %}
-<div id="main" style="margin: 100px">
+
+<div id="main" style="margin: 100px;">
+    <h2>Мультиканальная аналитика</h2>
     <div>
         <div class="col-md-6">
             <table class="table">
                 <thead>
                 <tr>
+                    <th>Канал</th>
                     <th>Визиты</th>
                     <th>Заявки</th>
                     <th>Доход</th>
@@ -60,6 +66,7 @@
                 </thead>
                 <tbody>
                 <tr>
+                    <td>Реклама</td>
                     <td>150</td>
                     <td>12</td>
                     <td>67439</td>
@@ -67,6 +74,7 @@
                     <td>12000</td>
                 </tr>
                 <tr>
+                    <td>Реклама</td>
                     <td>150</td>
                     <td>12</td>
                     <td>67439</td>
@@ -74,6 +82,7 @@
                     <td>12000</td>
                 </tr>
                 <tr>
+                    <td>Реклама</td>
                     <td>150</td>
                     <td>12</td>
                     <td>67439</td>
@@ -81,6 +90,7 @@
                     <td>12000</td>
                 </tr>
                 <tr>
+                    <td>Реклама</td>
                     <td>150</td>
                     <td>12</td>
                     <td>67439</td>
