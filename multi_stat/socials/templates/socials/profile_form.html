@@ -14,8 +14,36 @@
         <div class="u-expanded-width-sm u-expanded-width-xs u-form u-form-1">
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Изменить профиль">
+                <div class="u-form-group u-form-name">
+                    <p>
+                        <label for="id_username" class="u-label">Имя</label>
+                        <input type="text" name="username" value="{{ user.profile.username }}" maxlength="100" required="" id="id_username"
+                               class="u-border-none u-input u-input-rectangle u-radius u-input-1">
+                    </p>
+                </div>
+                <div class="u-form-group u-form-name">
+                    <p>
+                        <label for="id_phone" class="u-label">Телефон</label>
+                        <input type="text" name="phone" value="{{ user.profile.phone }}" maxlength="20" id="id_phone"
+                               class="u-border-none u-input u-input-rectangle u-radius u-input-1">
+                    </p>
+                </div>
+                <div class="u-form-group u-form-name">
+                    <p>
+                        <label for="id_email" class="u-label">Электронная почта:</label>
+                        <input type="email" name="email" value="{{ user.profile.email }}" maxlength="254" required=""
+                               id="id_email" class="u-border-none u-input u-input-rectangle u-radius u-input-1">
+                    </p>
+                </div>
+                <div class="u-form-group u-form-name">
+                    <p>
+                        <br>
+                        <img src="{{ user.profile.avatar.url }}" width="150px"><br>
+                        <input type="file" name="avatar" accept="image/*" id="id_avatar" style="margin-top:10px; background-color: DarkOrchid; color: white; font-size: bold; border-radius: 5px; width: 350px;">
+                    </p>
+                </div>
+                <input type="submit" value="Изменить профиль"
+                       style="margin-top:10px; background-color: DarkOrchid; color: white; font-size: bold; border-radius: 5px; width: 200px;">
             </form>
         </div>
         <div class="u-palette-1-base u-preserve-proportions u-shape u-shape-circle u-shape-2"></div>
