@@ -1,4 +1,5 @@
 from django.contrib import admin
+from .admin_mixins import ExportAsCSV
 from .models import (
     SEOReport,
     YandexSEOReport,
@@ -18,7 +19,10 @@ from .models import (
 
 
 @admin.register(SEOReport)
-class SEOReportAdmin(admin.ModelAdmin):
+class SEOReportAdmin(admin.ModelAdmin, ExportAsCSV):
+    actions = [
+        "export_csv",
+    ]
     list_display = [
         "title",
         "visits",
@@ -31,7 +35,10 @@ class SEOReportAdmin(admin.ModelAdmin):
 
 
 @admin.register(GoogleSEOReport)
-class GoogleSEOReportAdmin(admin.ModelAdmin):
+class GoogleSEOReportAdmin(admin.ModelAdmin, ExportAsCSV):
+    actions = [
+        "export_csv",
+    ]
     list_display = [
         "title",
         "visits",
@@ -46,7 +53,10 @@ class GoogleSEOReportAdmin(admin.ModelAdmin):
 
 
 @admin.register(YandexSEOReport)
-class YandexSEOReportAdmin(admin.ModelAdmin):
+class YandexSEOReportAdmin(admin.ModelAdmin, ExportAsCSV):
+    actions = [
+        "export_csv",
+    ]
     list_display = [
         "title",
         "visits",
@@ -61,7 +71,10 @@ class YandexSEOReportAdmin(admin.ModelAdmin):
 
 
 @admin.register(DirectSEOReport)
-class DirectSEOReportAdmin(admin.ModelAdmin):
+class DirectSEOReportAdmin(admin.ModelAdmin, ExportAsCSV):
+    actions = [
+        "export_csv",
+    ]
     list_display = [
         "title",
         "visits",
@@ -76,7 +89,10 @@ class DirectSEOReportAdmin(admin.ModelAdmin):
 
 
 @admin.register(ReferralsSEOReport)
-class ReferralsSEOReportAdmin(admin.ModelAdmin):
+class ReferralsSEOReportAdmin(admin.ModelAdmin, ExportAsCSV):
+    actions = [
+        "export_csv",
+    ]
     list_display = [
         "title",
         "visits",
@@ -91,7 +107,10 @@ class ReferralsSEOReportAdmin(admin.ModelAdmin):
 
 
 @admin.register(YandexDirect)
-class YandexDirectAdmin(admin.ModelAdmin):
+class YandexDirectAdmin(admin.ModelAdmin, ExportAsCSV):
+    actions = [
+        "export_csv",
+    ]
     list_display = [
         "title",
         "views",
@@ -108,7 +127,10 @@ class YandexDirectAdmin(admin.ModelAdmin):
 
 
 @admin.register(GoogleAds)
-class GoogleAdsAdmin(admin.ModelAdmin):
+class GoogleAdsAdmin(admin.ModelAdmin, ExportAsCSV):
+    actions = [
+        "export_csv",
+    ]
     list_display = [
         "title",
         "views",
@@ -125,7 +147,10 @@ class GoogleAdsAdmin(admin.ModelAdmin):
 
 
 @admin.register(VKAds)
-class VKAdsAdmin(admin.ModelAdmin):
+class VKAdsAdmin(admin.ModelAdmin, ExportAsCSV):
+    actions = [
+        "export_csv",
+    ]
     list_display = [
         "title",
         "views",
@@ -142,7 +167,10 @@ class VKAdsAdmin(admin.ModelAdmin):
 
 
 @admin.register(FacebookAds)
-class FacebookAdsAdmin(admin.ModelAdmin):
+class FacebookAdsAdmin(admin.ModelAdmin, ExportAsCSV):
+    actions = [
+        "export_csv",
+    ]
     list_display = [
         "title",
         "views",
@@ -159,7 +187,10 @@ class FacebookAdsAdmin(admin.ModelAdmin):
 
 
 @admin.register(InstagramAds)
-class InstagramAdsAdmin(admin.ModelAdmin):
+class InstagramAdsAdmin(admin.ModelAdmin, ExportAsCSV):
+    actions = [
+        "export_csv",
+    ]
     list_display = [
         "title",
         "views",
@@ -176,7 +207,10 @@ class InstagramAdsAdmin(admin.ModelAdmin):
 
 
 @admin.register(MyTarget)
-class MyTargetAdmin(admin.ModelAdmin):
+class MyTargetAdmin(admin.ModelAdmin, ExportAsCSV):
+    actions = [
+        "export_csv",
+    ]
     list_display = [
         "title",
         "views",
@@ -193,7 +227,10 @@ class MyTargetAdmin(admin.ModelAdmin):
 
 
 @admin.register(TelegramAds)
-class TelegramAdsAdmin(admin.ModelAdmin):
+class TelegramAdsAdmin(admin.ModelAdmin, ExportAsCSV):
+    actions = [
+        "export_csv",
+    ]
     list_display = [
         "title",
         "visits",
@@ -207,7 +244,10 @@ class TelegramAdsAdmin(admin.ModelAdmin):
 
 
 @admin.register(EmailTracking)
-class EmailTrackingAdmin(admin.ModelAdmin):
+class EmailTrackingAdmin(admin.ModelAdmin, ExportAsCSV):
+    actions = [
+        "export_csv",
+    ]
     list_display = [
         "title",
         "visits",
@@ -221,7 +261,10 @@ class EmailTrackingAdmin(admin.ModelAdmin):
 
 
 @admin.register(CallTracking)
-class CallTrackingAdmin(admin.ModelAdmin):
+class CallTrackingAdmin(admin.ModelAdmin, ExportAsCSV):
+    actions = [
+        "export_csv",
+    ]
     list_display = [
         "title",
         "visits",

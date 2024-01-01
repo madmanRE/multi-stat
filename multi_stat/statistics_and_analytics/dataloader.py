@@ -244,6 +244,7 @@ def dataloader():
         get_seo_reports()
         get_ads_reports()
         get_other_reports()
+        print("Данные выгружены успешно")
     except e:
         print(e)
     return 0
