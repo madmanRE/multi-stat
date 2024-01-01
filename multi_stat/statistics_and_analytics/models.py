@@ -65,6 +65,8 @@ class SEOReportDetail(models.Model):
         return self.title
 
     class Meta:
+        verbose_name = "SEO отчет детально"
+        verbose_name_plural = "SEO отчеты детально"
         ordering = ["-created"]
         indexes = [
             models.Index(fields=["-created"]),
