@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "main.apps.MainConfig",
     "socials.apps.SocialsConfig",
+    "statistics_and_analytics.apps.StatisticsAndAnalyticsConfig",
 ]
 
 MIDDLEWARE = [

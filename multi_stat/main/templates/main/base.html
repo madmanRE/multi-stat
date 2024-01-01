@@ -35,6 +35,8 @@
     <meta property="og:title" content="Главная">
     <meta property="og:type" content="website">
     <meta data-intl-tel-input-cdn-path="intlTelInput/">
+    {% block style %}
+    {% endblock %}
 </head>
 <body data-home-page="Главная.html" data-home-page-title="Главная" data-path-to-root="./" data-include-products="false"
       class="u-body u-xl-mode" data-lang="ru">
@@ -70,7 +72,7 @@
                     {% if request.user.is_authenticated and request.user.username != 'admin' and request.user.profile.id != '' %}
                     <li class="u-nav-item"><a
                             class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-5-light-1 u-text-white"
-                            style="padding: 10px 0px;">Аналитика</a>
+                            href="{% url 'saa:analytics' %}" style="padding: 10px 0px;">Аналитика</a>
                     </li>
                     <li class="u-nav-item"><a
                             class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-5-light-1 u-text-white"
@@ -117,7 +119,7 @@
                             <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'main:index' %}">Главная</a>
                             </li>
                             {% if request.user.is_authenticated and request.user.username != 'admin' and request.user.profile.id != '' %}
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link">Аналитика</a>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'saa:analytics' %}">Аналитика</a>
                             </li>
                             <li class="u-nav-item"><a class="u-button-style u-nav-link">Дашборд</a>
                             </li>
