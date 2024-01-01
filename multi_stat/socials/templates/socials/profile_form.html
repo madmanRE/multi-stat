@@ -7,9 +7,18 @@
 
 {% block content %}
 
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Изменить профиль">
-</form>
+<section class="u-clearfix u-palette-1-light-3 u-section-1" id="carousel_9c5c">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <h2 class="u-align-center u-text u-text-default u-text-1"> Изменение профиля</h2>
+        <div class="u-align-left-lg u-align-left-xl u-palette-2-base u-preserve-proportions u-shape u-shape-circle u-shape-1"></div>
+        <div class="u-expanded-width-sm u-expanded-width-xs u-form u-form-1">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Изменить профиль">
+            </form>
+        </div>
+        <div class="u-palette-1-base u-preserve-proportions u-shape u-shape-circle u-shape-2"></div>
+    </div>
+</section>
 {% endblock %}
