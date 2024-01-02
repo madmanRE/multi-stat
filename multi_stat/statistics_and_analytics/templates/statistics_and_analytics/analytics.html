@@ -1,5 +1,6 @@
 {% extends 'main/base.html' %}
 {% load static %}
+{% load mathfilters %}
 
 {% block title %}
 Аналитика {{profile.username}}
@@ -44,6 +45,21 @@
     tr:hover {
         background-color:Violet;
     }
+    #span {
+        margin: 6px;
+        padding: 10px;
+        background-color: BlueViolet;
+        color: white;
+        font-weight: bold;
+        border-radius: 5px;
+        width: 200px;
+        height: 100px;
+    }
+    #span:hover {
+        background-color: DarkOrange;
+        cursor: pointer;
+    }
+
 </style>
 {% endblock %}
 
@@ -51,6 +67,13 @@
 
 <div id="main" style="margin: 100px;">
     <h2>Мультиканальная аналитика</h2>
+    <br>
+    <div style="text-align: center">
+        {% for page in pages %}
+        <a href="{% url 'saa:analytics' page %}" id="span">Период {{page}}</a>
+        {% endfor %}
+    </div>
+    <br>
     <div>
         <div class="col-md-6">
             <table class="table">
@@ -59,49 +82,50 @@
                     <th>Канал</th>
                     <th>Визиты</th>
                     <th>Заявки</th>
-                    <th>Доход</th>
                     <th>Расход</th>
+                    <th>Доход</th>
                     <th>Итог</th>
+                    <th>Дата</th>
                 </tr>
                 </thead>
                 <tbody>
+                {% for d in data %}
                 <tr>
-                    <td>Реклама</td>
-                    <td>150</td>
-                    <td>12</td>
-                    <td>67439</td>
-                    <td>45667</td>
-                    <td>12000</td>
+                    <td><a href="#" style="color: black; font-weight: bold">{{ d.title }}</a></td>
+                    <td>{{ d.visits }}</td>
+                    <td>{{ d.transactions }}</td>
+                    <td>{{ d.all_expense }}</td>
+                    <td>{{ d.income }}</td>
+                    <td id="result">{{ d.income|sub:d.all_expense }}</td>
+                    <td>{{ d.created }}</td>
                 </tr>
-                <tr>
-                    <td>Реклама</td>
-                    <td>150</td>
-                    <td>12</td>
-                    <td>67439</td>
-                    <td>45667</td>
-                    <td>12000</td>
-                </tr>
-                <tr>
-                    <td>Реклама</td>
-                    <td>150</td>
-                    <td>12</td>
-                    <td>67439</td>
-                    <td>45667</td>
-                    <td>12000</td>
-                </tr>
-                <tr>
-                    <td>Реклама</td>
-                    <td>150</td>
-                    <td>12</td>
-                    <td>67439</td>
-                    <td>45667</td>
-                    <td>12000</td>
-                </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 
+<script>
+    const results = document.querySelectorAll("#result")
+    let allSum = Number(0)
+    results.forEach(res => {
+       if(Number(res.textContent) > Number(0)){
+        allSum += Number(res.textContent);
+       }
+    })
+
+    const medianNumber = Number(allSum / results.length);
+
+
+    results.forEach(res => {
+        if(Number(res.textContent) <= 0){
+            res.parentNode.style.backgroundColor="Crimson";
+        }
+        if(Number(res.textContent) > (Number(medianNumber) * 1.5)){
+            res.parentNode.style.backgroundColor="ForestGreen";
+        }
+    })
+</script>
 
 {% endblock %}

@@ -27,7 +27,7 @@ class SEOReportAdmin(admin.ModelAdmin, ExportAsCSV):
         "title",
         "visits",
         "all_expense",
-        "sum_transactions",
+        "transactions",
         "avg_check",
         "income",
         "created",

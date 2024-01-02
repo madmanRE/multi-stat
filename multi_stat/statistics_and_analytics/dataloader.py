@@ -25,7 +25,7 @@ def get_seo_reports():
         title=res_json["title"],
         visits=res_json["visits"],
         all_expense=res_json["all_expense"],
-        sum_transactions=res_json["sum_transactions"],
+        transactions=res_json["sum_transactions"],
         avg_check=res_json["avg_check"],
         income=res_json["income"],
     )

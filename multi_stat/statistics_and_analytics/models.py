@@ -5,7 +5,7 @@ class SEOReport(models.Model):
     title = models.CharField(max_length=100, default="SEO", verbose_name="Название")
     visits = models.PositiveIntegerField(default=0, verbose_name="Визиты")
     all_expense = models.PositiveIntegerField(default=0, verbose_name="Расход")
-    sum_transactions = models.PositiveIntegerField(default=0, verbose_name="Заявки")
+    transactions = models.PositiveIntegerField(default=0, verbose_name="Заявки")
     avg_check = models.PositiveIntegerField(default=0, verbose_name="Средний чек")
     income = models.PositiveIntegerField(default=0, verbose_name="Доход")
     created = models.DateTimeField(auto_now_add=True)
