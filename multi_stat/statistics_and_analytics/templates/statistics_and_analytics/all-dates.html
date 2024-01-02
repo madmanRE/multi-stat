@@ -1,0 +1,94 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load mathfilters %}
+
+{% block title %}
+Календарь выгрузок
+{% endblock %}
+{% block style %}
+<style>
+    h2 {
+        text-align: center;
+    }
+    #main {
+        min-height: 400px;
+    }
+    table {
+        width: 100%;
+        margin-bottom: 20px;
+        border: 5px solid BlueViolet;
+        border-top: 5px solid BlueViolet;
+        border-bottom: 3px solid BlueViolet;
+        border-collapse: collapse;
+        outline: 3px solid BlueViolet;
+        font-size: 15px;
+        background: #fff!important;
+        }
+    table th {
+        font-weight: bold;
+        padding: 7px;
+        background: BlueViolet;
+        color: white;
+        border: 1px solid #dddddd;
+        text-align: left;
+        font-size: 15px;
+        border-top: 3px solid #fff;
+        border-bottom: 3px solid BlueViolet;
+    }
+    table td {
+        padding: 7px;
+        border: 1px solid #dddddd;
+        border-top: 3px solid #fff;
+        border-bottom: 3px solid #fff;
+        font-size: 15px;
+    }
+    tr:hover {
+        background-color:Violet;
+    }
+    #span {
+        margin: 6px;
+        padding: 10px;
+        background-color: BlueViolet;
+        color: white;
+        font-weight: bold;
+        border-radius: 5px;
+        width: 200px;
+        height: 100px;
+    }
+    #span:hover {
+        background-color: DarkOrange;
+        cursor: pointer;
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div id="main" style="margin: 100px;">
+    <h2>Календарь выгрузок</h2>
+    <br>
+    <div>
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Дата выгрузки</th>
+                    <th>Прибыль</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for d in data %}
+                <tr>
+                    <td><a href="{% url 'saa:a_for_dates' date=d.0 %}">{{ d.0|truncatechars:11 }}</a></td>
+                    <td>{{ d.1 }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
