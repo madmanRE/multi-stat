@@ -73,7 +73,7 @@ def gen_seo_report():
     seo_report = schemas.SEO(
         title="SEO",
         visits=visits,
-        all_expense=random.randint(110000, 180000),
+        all_expense=random.randint(180000, 250000),
         sum_transactions=sum_transactions,
         avg_check=4000,
         income=sum_transactions * 4000,

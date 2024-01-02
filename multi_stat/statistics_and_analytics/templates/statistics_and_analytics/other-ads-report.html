@@ -3,7 +3,7 @@
 {% load mathfilters %}
 
 {% block title %}
-Аналитика {{profile.username}}
+Другие каналы
 {% endblock %}
 {% block style %}
 <style>
@@ -81,6 +81,7 @@
 
 {% block content %}
 
+
 <p style="text-align:center; padding-top: 15px;">
     <a href="{% url 'saa:seo_report' 1 %}" class="reports">SEO каналы</a>
     <a href="{% url 'saa:ads_report' 1 %}" class="reports">Рекламные кабинеты</a>
@@ -88,17 +89,15 @@
     <a href="{% url 'saa:dates' %}" class="reports">Календарь выгрузок</a>
 </p>
 
-<div id="main" style="margin: 100px; margin-top: 50px;">
-    <h2>Мультиканальная аналитика</h2>
+<div id="main" style="margin: 100px;">
+    <h2>Другие каналы</h2>
     <br>
-    {% if pages %}
     <div style="text-align: center">
         {% for page in pages %}
-        <a href="{% url 'saa:analytics' page.0 %}" id="span">{{page.1}}</a>
+        <a href="{% url 'saa:other_ads_report' page.0 %}" id="span">{{page.1}}</a>
         {% endfor %}
     </div>
     <br>
-    {% endif %}
     <div>
         <div class="col-md-6">
             <table class="table">
@@ -106,6 +105,7 @@
                 <tr>
                     <th>Канал</th>
                     <th>Визиты</th>
+                    <th>Конверсия</th>
                     <th>Заявки</th>
                     <th>Расход</th>
                     <th>Доход</th>
@@ -118,11 +118,12 @@
                 <tr>
                     <td style="color: black; font-weight: bold">{{ d.title }}</td>
                     <td>{{ d.visits }}</td>
+                    <td>{{ d.convert }}</td>
                     <td>{{ d.transactions }}</td>
                     <td>{{ d.all_expense }}</td>
-                    <td>{{ d.income }}</td>
+                    <td>{{ d.income}}</td>
                     <td id="result">{{ d.income|sub:d.all_expense }}</td>
-                    <td>{{ d.created }}</td>
+                    <td>{{ d.created}}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
@@ -147,7 +148,7 @@
         if(Number(res.textContent) <= 0){
             res.parentNode.style.backgroundColor="Crimson";
         }
-        if(Number(res.textContent) > (Number(medianNumber) * 1.5)){
+        if(Number(res.textContent) > (Number(medianNumber) * 1.3)){
             res.parentNode.style.backgroundColor="ForestGreen";
         }
     })

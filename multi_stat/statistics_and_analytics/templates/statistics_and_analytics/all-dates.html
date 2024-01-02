@@ -3,7 +3,7 @@
 {% load mathfilters %}
 
 {% block title %}
-Аналитика {{profile.username}}
+Календарь выгрузок
 {% endblock %}
 {% block style %}
 <style>
@@ -81,6 +81,7 @@
 
 {% block content %}
 
+
 <p style="text-align:center; padding-top: 15px;">
     <a href="{% url 'saa:seo_report' 1 %}" class="reports">SEO каналы</a>
     <a href="{% url 'saa:ads_report' 1 %}" class="reports">Рекламные кабинеты</a>
@@ -88,41 +89,23 @@
     <a href="{% url 'saa:dates' %}" class="reports">Календарь выгрузок</a>
 </p>
 
-<div id="main" style="margin: 100px; margin-top: 50px;">
-    <h2>Мультиканальная аналитика</h2>
+<div id="main" style="margin: 100px;">
+    <h2>Календарь выгрузок</h2>
     <br>
-    {% if pages %}
-    <div style="text-align: center">
-        {% for page in pages %}
-        <a href="{% url 'saa:analytics' page.0 %}" id="span">{{page.1}}</a>
-        {% endfor %}
-    </div>
-    <br>
-    {% endif %}
     <div>
         <div class="col-md-6">
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Канал</th>
-                    <th>Визиты</th>
-                    <th>Заявки</th>
-                    <th>Расход</th>
-                    <th>Доход</th>
-                    <th>Итог</th>
-                    <th>Дата</th>
+                    <th>Дата выгрузки</th>
+                    <th>Прибыль</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for d in data %}
                 <tr>
-                    <td style="color: black; font-weight: bold">{{ d.title }}</td>
-                    <td>{{ d.visits }}</td>
-                    <td>{{ d.transactions }}</td>
-                    <td>{{ d.all_expense }}</td>
-                    <td>{{ d.income }}</td>
-                    <td id="result">{{ d.income|sub:d.all_expense }}</td>
-                    <td>{{ d.created }}</td>
+                    <td><a href="{% url 'saa:a_for_dates' date=d.0 %}">{{ d.0|truncatechars:11 }}</a></td>
+                    <td>{{ d.1 }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
@@ -131,26 +114,5 @@
     </div>
 </div>
 
-<script>
-    const results = document.querySelectorAll("#result")
-    let allSum = Number(0)
-    results.forEach(res => {
-       if(Number(res.textContent) > Number(0)){
-        allSum += Number(res.textContent);
-       }
-    })
-
-    const medianNumber = Number(allSum / results.length);
-
-
-    results.forEach(res => {
-        if(Number(res.textContent) <= 0){
-            res.parentNode.style.backgroundColor="Crimson";
-        }
-        if(Number(res.textContent) > (Number(medianNumber) * 1.5)){
-            res.parentNode.style.backgroundColor="ForestGreen";
-        }
-    })
-</script>
 
 {% endblock %}
