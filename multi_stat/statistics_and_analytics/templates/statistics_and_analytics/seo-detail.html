@@ -59,11 +59,34 @@ SEO Отчеты
         background-color: DarkOrange;
         cursor: pointer;
     }
+    .reports {
+        margin: 6px;
+        padding: 10px;
+        background-color: Grey;
+        color: white;
+        font-weight: bold;
+        border-radius: 5px;
+        width: 200px;
+        height: 100px;
+    }
+    .reports:hover {
+        background-color: DarkOrange;
+        cursor: pointer;
+        color: white;
+        font-size: 105%;
+    }
 
 </style>
 {% endblock %}
 
 {% block content %}
+
+<p style="text-align:center; padding-top: 15px;">
+    <a href="{% url 'saa:seo_report' 1 %}" class="reports">SEO каналы</a>
+    <a href="{% url 'saa:ads_report' 1 %}" class="reports">Рекламные кабинеты</a>
+    <a href="{% url 'saa:other_ads_report' 1 %}" class="reports">Другие каналы</a>
+    <a href="{% url 'saa:dates' %}" class="reports">Календарь выгрузок</a>
+</p>
 
 <div id="main" style="margin: 100px;">
     <h2>SEO аналитика</h2>
