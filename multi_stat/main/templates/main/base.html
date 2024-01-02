@@ -117,7 +117,7 @@
                             {% if request.user.is_authenticated and request.user.username != 'admin' and request.user.profile.id != '' %}
                             <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'saa:analytics' 1 %}">Дашборд</a>
                             </li>
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'socials:profile_view' pk=request.user.profile.id%}">Профиль</a>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'socials:profile_view' pk=request.user.profile.id %}">Профиль</a>
                             </li>
                             <li class="u-nav-item">
                                 <form method="post" action="{% url 'socials:logout' %}">

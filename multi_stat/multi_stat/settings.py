@@ -129,6 +129,6 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOGIN_REDIRECT_URL = "{% url 'saa:analytics' 1 %}"
+LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = "socials:login"
 LOGOUT_URL = "socials:logout"

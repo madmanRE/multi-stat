@@ -2,6 +2,7 @@ from datetime import datetime
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import cache_page
 from .models import (
     SEOReport,
     YandexSEOReport,
@@ -21,6 +22,7 @@ from .models import (
 
 
 @login_required()
+@cache_page(60 * 60)
 def analytics(request, page):
     seo = SEOReport.objects.all()[:10]
     ya_d = YandexDirect.objects.all()[:10]
@@ -57,6 +59,7 @@ def analytics(request, page):
 
 
 @login_required()
+@cache_page(60 * 60)
 def seo_detail_view(request, page):
     ya = YandexSEOReport.objects.all()[:10]
     go = GoogleSEOReport.objects.all()[:10]
@@ -78,6 +81,7 @@ def seo_detail_view(request, page):
 
 
 @login_required
+@cache_page(60 * 60)
 def ads_detail(request, page):
     ya_d = YandexDirect.objects.all()[:10]
     go_a = GoogleAds.objects.all()[:10]
@@ -108,6 +112,7 @@ def ads_detail(request, page):
 
 
 @login_required
+@cache_page(60 * 60)
 def other_detail(request, page):
     tg_a = TelegramAds.objects.all()[:10]
     em_t = EmailTracking.objects.all()[:10]
@@ -132,6 +137,7 @@ def other_detail(request, page):
 
 
 @login_required
+@cache_page(60 * 60)
 def dataloading_dates(request):
     seo = SEOReport.objects.all()
     ya_d = YandexDirect.objects.all()
@@ -172,6 +178,7 @@ def dataloading_dates(request):
 
 
 @login_required()
+@cache_page(60 * 60)
 def analytics_for_date(request, date):
     res_date = date.split(".")[0]
     seo = SEOReport.objects.filter(created__contains=res_date).first()
