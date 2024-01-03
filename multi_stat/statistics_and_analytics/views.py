@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_page
+from .graph_maker import make_graph
 from .models import (
     SEOReport,
     YandexSEOReport,
@@ -22,7 +23,7 @@ from .models import (
 
 
 @login_required()
-@cache_page(60 * 60)
+# @cache_page(60 * 60)
 def analytics(request, page):
     seo = SEOReport.objects.all()[:10]
     ya_d = YandexDirect.objects.all()[:10]
@@ -50,11 +51,14 @@ def analytics(request, page):
             ca_t,
         )
     )
+
+    graph = make_graph(data, page)
+
     res_dict = {}
     for i in range(len(seo)):
         res_dict.update({ind[i]: data[i]})
 
-    context = {"data": res_dict[page], "pages": list(zip(ind, dates))}
+    context = {"data": res_dict[page], "pages": list(zip(ind, dates)), "graph": graph}
     return render(request, "statistics_and_analytics/analytics.html", context)
 
 

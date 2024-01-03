@@ -129,6 +129,11 @@
             </table>
         </div>
     </div>
+    {% if graph %}
+    <div style="text-align: center">
+        <img src="{% static graph %}">
+    </div>
+    {% endif %}
 </div>
 
 <script>
